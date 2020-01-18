@@ -1,0 +1,66 @@
+diff -up pykde4-4.8.3/CMakeLists.txt.webkit pykde4-4.8.3/CMakeLists.txt
+--- pykde4-4.8.3/CMakeLists.txt.webkit	2012-05-14 13:37:25.955000001 +0200
++++ pykde4-4.8.3/CMakeLists.txt	2012-05-14 14:18:31.840000524 +0200
+@@ -70,7 +70,6 @@ INCLUDE_DIRECTORIES(
+     ${QT_QTSQL_INCLUDE_DIR}
+     ${QT_QTXML_INCLUDE_DIR}
+     ${QT_QTSVG_INCLUDE_DIR}
+-    ${QT_QTWEBKIT_INCLUDE_DIR}
+     ${KDE4_INCLUDE_DIR}
+     ${KDE4_INCLUDE_DIR}/solid
+     ${KDE4_INCLUDE_DIR}/kio
+diff -up pykde4-4.8.3/sip/plasma/abstractrunner.sip.webkit pykde4-4.8.3/sip/plasma/abstractrunner.sip
+--- pykde4-4.8.3/sip/plasma/abstractrunner.sip.webkit	2012-05-14 14:09:57.797000001 +0200
++++ pykde4-4.8.3/sip/plasma/abstractrunner.sip	2012-05-14 14:11:08.439995732 +0200
+@@ -94,7 +94,6 @@
+ #include <plasma/view.h>
+ #include <plasma/wallpaper.h>
+ #include <plasma/scripting/wallpaperscript.h>
+-#include <plasma/widgets/webview.h>
+ %End
+ 
+ namespace Plasma
+@@ -288,8 +287,6 @@ protected:
+         sipType = sipType_Plasma_SvgWidget;
+     else if (dynamic_cast<Plasma::TabBar*>(sipCpp))
+         sipType = sipType_Plasma_TabBar;
+-    else if (dynamic_cast<Plasma::WebView*>(sipCpp))
+-        sipType = sipType_Plasma_WebView;
+     else if (dynamic_cast<Plasma::CheckBox*>(sipCpp))
+         sipType = sipType_Plasma_CheckBox;
+     else if (dynamic_cast<Plasma::ComboBox*>(sipCpp))
+diff -up pykde4-4.8.3/sip/plasma/animation.sip.webkit pykde4-4.8.3/sip/plasma/animation.sip
+--- pykde4-4.8.3/sip/plasma/animation.sip.webkit	2012-05-14 14:21:54.546998613 +0200
++++ pykde4-4.8.3/sip/plasma/animation.sip	2012-05-14 14:22:11.819999510 +0200
+@@ -163,8 +163,6 @@ protected:
+         sipType = sipType_Plasma_SvgWidget;
+     else if (dynamic_cast<Plasma::TabBar*>(sipCpp))
+         sipType = sipType_Plasma_TabBar;
+-    else if (dynamic_cast<Plasma::WebView*>(sipCpp))
+-        sipType = sipType_Plasma_WebView;
+     else if (dynamic_cast<Plasma::CheckBox*>(sipCpp))
+         sipType = sipType_Plasma_CheckBox;
+     else if (dynamic_cast<Plasma::ComboBox*>(sipCpp))
+@@ -292,5 +290,4 @@ public:
+ #include <plasma/view.h>
+ #include <plasma/wallpaper.h>
+ #include <plasma/scripting/wallpaperscript.h>
+-#include <plasma/widgets/webview.h>
+ %End
+diff -up pykde4-4.8.3/sip/plasma/plasmamod.sip.webkit pykde4-4.8.3/sip/plasma/plasmamod.sip
+--- pykde4-4.8.3/sip/plasma/plasmamod.sip.webkit	2011-07-27 20:37:15.301683294 +0200
++++ pykde4-4.8.3/sip/plasma/plasmamod.sip	2012-05-14 14:21:40.506000083 +0200
+@@ -27,7 +27,6 @@
+ %Import QtGui/QtGuimod.sip
+ %Import QtNetwork/QtNetworkmod.sip
+ %Import QtSvg/QtSvgmod.sip
+-%Import QtWebKit/QtWebKitmod.sip
+ %Import QtXml/QtXmlmod.sip
+ %Import QtDeclarative/QtDeclarativemod.sip
+ %Import QtScript/QtScriptmod.sip
+@@ -116,5 +115,4 @@
+ %Include toolbutton.sip
+ %Include treeview.sip
+ %Include videowidget.sip
+-%Include webview.sip
+ %Include windoweffects.sip
