@@ -11,7 +11,7 @@
 
 Name:    pykde4 
 Version: 4.10.5
-Release: 1%{?dist}
+Release: 4%{?dist}
 Summary: Python bindings for KDE4 
 
 # http://techbase.kde.org/Policies/Licensing_Policy
@@ -28,6 +28,8 @@ Source0: http://download.kde.org/%{stable}/%{version}/src/%{name}-%{version}.tar
 # See https://reviewboard.kde.org/r/101903
 # hard-codes sip path to /usr/share/sip, instead of respecting system path
 Patch1: 0001-Ensure-SIP-files-are-installed-to-the-right-path-bas.patch
+
+Patch2: pykde4-4.10.5-remove-env-shebang.patch
 
 ## upstreamable patches
 
@@ -156,6 +158,7 @@ Provides:  python3-PyKDE4-devel%{?_isa} = %{version}-%{release}
 %setup -q -n pykde4-%{version}
 
 %patch1 -p1 -R -b .use_system_sip_dir
+%patch2 -p1 -b .remove-env-shebang
 
 %patch200 -p1 -b .respect_sip_flags
 %patch201 -p1 -b .kpythonpluginfactory_slots
@@ -268,6 +271,15 @@ mv %{buildroot}%{_kde4_appsdir}/pykde4/examples/ %{buildroot}%{_docdir}/pykde4/
 
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 4.10.5-4
+- Mass rebuild 2014-01-24
+
+* Mon Jan 13 2014 Jan Grulich <jgrulich@redhat.com> - 4.10.5-3
+- Do not use shebang with env (#987037)
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 4.10.5-2
+- Mass rebuild 2013-12-27
+
 * Sun Jun 30 2013 Than Ngo <than@redhat.com> - 4.10.5-1
 - 4.10.5
 
