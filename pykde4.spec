@@ -11,7 +11,7 @@
 
 Name:    pykde4 
 Version: 4.10.5
-Release: 4%{?dist}
+Release: 6%{?dist}
 Summary: Python bindings for KDE4 
 
 # http://techbase.kde.org/Policies/Licensing_Policy
@@ -29,7 +29,14 @@ Source0: http://download.kde.org/%{stable}/%{version}/src/%{name}-%{version}.tar
 # hard-codes sip path to /usr/share/sip, instead of respecting system path
 Patch1: 0001-Ensure-SIP-files-are-installed-to-the-right-path-bas.patch
 
+# remove shebang
 Patch2: pykde4-4.10.5-remove-env-shebang.patch
+
+# globally sets dlopen flags causes crash python modules
+Patch3: pykde4-4.10.5-crash_module.patch
+
+# fix rpmdiff, Requires: libnepomukutils.so.4 disappearing
+Patch4: pykde4-4.10.5-rpmdiff-missing-link-nepomukutils.patch
 
 ## upstreamable patches
 
@@ -159,6 +166,8 @@ Provides:  python3-PyKDE4-devel%{?_isa} = %{version}-%{release}
 
 %patch1 -p1 -R -b .use_system_sip_dir
 %patch2 -p1 -b .remove-env-shebang
+%patch3 -p1
+%patch4 -p1 -b .missing-requires-libnepomukutils
 
 %patch200 -p1 -b .respect_sip_flags
 %patch201 -p1 -b .kpythonpluginfactory_slots
@@ -271,6 +280,12 @@ mv %{buildroot}%{_kde4_appsdir}/pykde4/examples/ %{buildroot}%{_docdir}/pykde4/
 
 
 %changelog
+* Wed Jan 23 2019 Than Ngo <than@redhat.com> - 4.10.5-6
+- Related: #1655166 - requirement on libnepomukutils.so.4 disappearing
+
+* Tue Dec 04 2018 Than Ngo <than@redhat.com> - 4.10.5-5
+- Resolves: #1655166 - crash in python module
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 4.10.5-4
 - Mass rebuild 2014-01-24
 

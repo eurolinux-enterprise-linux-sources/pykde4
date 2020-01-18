@@ -1,0 +1,12 @@
+diff -up pykde4-4.10.5/CMakeLists.txt.me pykde4-4.10.5/CMakeLists.txt
+--- pykde4-4.10.5/CMakeLists.txt.me	2019-01-23 16:31:27.379842344 +0100
++++ pykde4-4.10.5/CMakeLists.txt	2019-01-23 16:32:01.932909346 +0100
+@@ -197,7 +197,7 @@ if(Nepomuk_FOUND)
+     include_directories(${NEPOMUK_INCLUDE_DIR})
+     file(GLOB nepomuk_files_sip sip/nepomuk/*.sip)
+     set(SIP_EXTRA_FILES_DEPEND ${nepomuk_files_sip})
+-    add_sip_python_module(PyKDE4.nepomuk sip/nepomuk/nepomukmod.sip ${NEPOMUK_LIBRARIES} ${NEPOMUK_QUERY_LIBRARIES} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${SOPRANO_LIBRARIES} ${KDE4_KIO_LIBS})
++    add_sip_python_module(PyKDE4.nepomuk sip/nepomuk/nepomukmod.sip ${NEPOMUK_LIBRARIES} ${NEPOMUK_QUERY_LIBRARIES} ${NEPOMUK_UTILS_LIBRARIES} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${SOPRANO_LIBRARIES} ${KDE4_KIO_LIBS})
+     set(PYKDE_MODULES "${PYKDE_MODULES} nepomuk")
+ endif()
+ 

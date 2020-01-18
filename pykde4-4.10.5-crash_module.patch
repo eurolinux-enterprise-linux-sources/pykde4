@@ -1,0 +1,21 @@
+diff -up pykde4-4.10.5/__init__.py.me pykde4-4.10.5/__init__.py
+--- pykde4-4.10.5/__init__.py.me	2018-12-04 13:31:43.545667006 +0100
++++ pykde4-4.10.5/__init__.py	2018-12-04 13:31:51.116708365 +0100
+@@ -1,4 +1,13 @@
+ import sys,DLFCN
+-# This is needed to ensure that dynamic_cast and RTTI works inside kdelibs.
+-sys.setdlopenflags(DLFCN.RTLD_NOW|DLFCN.RTLD_GLOBAL)
+-     
+\ Kein Zeilenumbruch am Dateiende.
++
++def main():
++    dlopenflag = sys.getdlopenflags()
++    try:
++        # This is needed to ensure that dynamic_cast and RTTI works inside kdelibs.
++        sys.setdlopenflags(DLFCN.RTLD_NOW|DLFCN.RTLD_GLOBAL)
++    finally:
++        # set to default dlopenflag to avoid problem in other modules
++        sys.setdlopenflags(dlopenflag)
++
++if __name__=='__main__':
++    main()
